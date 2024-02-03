@@ -16,24 +16,22 @@ const App = () => {
         setData(JSON.stringify(response.data, null, 2));
         setLoading(false);
       })
-      .catch((error) => console.log(error));
+      .catch(() => setData("An error occurred: "));
   }
   useEffect(() => {
     fetchData();
   }, []);
   return (
-    (
-      <div>
-        {loading ? (
-          <p>loading...</p>
-        ) : (
-          <div>
-            <h1>Data Fetched from API</h1>
-            <pre>{data}</pre>
-          </div>
-        )}
-      </div>
-    ) || "An error occurred: "
+    <div>
+      {loading ? (
+        <p>loading...</p>
+      ) : (
+        <div>
+          <h1>Data Fetched from API</h1>
+          <pre>{data}</pre>
+        </div>
+      )}
+    </div>
   );
 };
 
