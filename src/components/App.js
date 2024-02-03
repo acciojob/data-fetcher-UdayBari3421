@@ -22,16 +22,18 @@ const App = () => {
     fetchData();
   }, []);
   return (
-    <div>
-      {loading ? (
-        <p>loading...</p>
-      ) : (
-        <div>
-          <h1>Data Fetched from API</h1>
-          <pre>{data}</pre>
-        </div>
-      )}
-    </div>
+    (
+      <div>
+        {loading ? (
+          <p>loading...</p>
+        ) : (
+          <div>
+            <h1>Data Fetched from API</h1>
+            <pre>{data}</pre>
+          </div>
+        )}
+      </div>
+    ) || "An error occurred: "
   );
 };
 
