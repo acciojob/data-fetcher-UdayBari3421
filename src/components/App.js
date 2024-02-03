@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./../styles/App.css";
 import axios from "axios";
-import { json } from "react-router-dom";
 
 const App = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [msg, setMsg] = useState("loading...");
 
   function fetchData() {
     setLoading(true);
@@ -15,8 +15,12 @@ const App = () => {
       .then((response) => {
         setData(JSON.stringify(response.data, null, 2));
         setLoading(false);
+        setMsg("loading...");
       })
-      .catch(() => setData("An error occurred: "));
+      .catch((err) => {
+        console.log(err);
+        setMsg("An error occurred: ");
+      });
   }
   useEffect(() => {
     fetchData();
@@ -24,7 +28,7 @@ const App = () => {
   return (
     <div>
       {loading ? (
-        <p>loading...</p>
+        <p>{msg}</p>
       ) : (
         <div>
           <h1>Data Fetched from API</h1>
